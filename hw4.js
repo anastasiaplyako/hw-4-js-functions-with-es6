@@ -1,56 +1,55 @@
 'use strict';
 
-let splitAndMerge = (str, sp) => {
-    return [...str].join(sp).split(`${sp} ${sp}`).join(" ");
-}
+const splitAndMerge = (str, sp) =>
+    str.split(" ").map(elem => elem.split("").join(sp)).join(" ");
 
-let convert = (hash) => {
+const convert = (hash) => {
     return Object.entries(hash);
 }
 
 console.log(convert({name: 'Jeremy', age: 24, role: 'Software Engineer'}));
 
-let toCamelCase = (str) => {
-    return str.replace(/[-_]+/g, '-').replace(/[-_](.)/g, (char) => char[1].toUpperCase());
+const toCamelCase = (str) => {
+    return str.replace(/[-_](.)/g, (char) => char[1].toUpperCase());
 }
 
-let reverseEachWord = (str) => {
+const reverseEachWord = (str) => {
     return str.split(" ").map((word) => word.split("").reverse().join("")).join(" ");
 }
 
-let stringExpansion = (str) => {
+const stringExpansion = (str) => {
     if (!str.length) return "";
     return str.replace(/(\d)+([A-Za-zА-Яа-я])/g, (match, number, letter) =>
-        number.replace(/\d/g, letter.repeat(number))
+        letter.repeat(number)
     )
 }
 
-let largest = (...args) => {
-    return Math.max(...args);
+const largest = (...args) => {
+    return Math.max.apply(null, args);
 }
 
-let smallest = (...args) => {
-    return Math.min(...args);
+const smallest = (...args) => {
+    return Math.min.apply(null, args);
 }
 
-let transform = (baseArray) => baseArray.map((number) => () => number);
+const transform = (baseArray) => baseArray.map((number) => () => number);
 
-let sum = (...arg) =>{
+const sum = (...arg) => {
     if (!arg.length) {
         return 0;
     }
-    return arg[0] + sum(...arg.slice(1));
+    return arg[0] + sum.apply(null, arg.slice(1));
 }
 
-let countDown = (time) => {
-    let interval = setInterval(function () {
-        console.log(time);
-        time--;
-        if (time < 0) {
-            clearInterval(interval);
+const countDown = time => {
+    setTimeout(() => {
+        if (time >= 0) {
+            console.log(time);
+            countDown(time - 1);
+        } else {
+            console.log(0)
         }
     }, 1000);
-    return interval;
 }
 
 countDown(3);

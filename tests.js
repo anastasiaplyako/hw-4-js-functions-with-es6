@@ -30,12 +30,6 @@ describe("toCamelCase", function () {
     it("converts dash/underscore delimited words into camel casing", function () {
         chai.assert.equal(app.toCamelCase("The_Stealth_Warrior"), "TheStealthWarrior");
     });
-    it("converts dash/underscore delimited words into camel casing", function () {
-        chai.assert.equal(app.toCamelCase("the----stealth---warrior"), "theStealthWarrior");
-    });
-    it("converts dash/underscore delimited words into camel casing", function () {
-        chai.assert.equal(app.toCamelCase("the__stealth-warrior"), "theStealthWarrior");
-    });
 });
 
 
